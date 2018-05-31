@@ -24,7 +24,7 @@ export default class Hackathon extends Component {
     }
     axios({
       method: 'get',
-      url: `https://omdbapi.com/?s=${this.state.text}&apiKey=7cabe801`
+      url: `https://omdbapi.com/?s=${this.state.text}&apiKey={apikey}}`
     })
       .then((response) => {
         //Update the UI of React to display data and determine if search not found with alert
@@ -88,7 +88,7 @@ class MovieResults extends Component {
   // }
 
   findMovieIdCall() {
-    axios({ url: `http://www.omdbapi.com/?i=${this.props.movie.imdbID}&apikey=7cabe801` })
+    axios({ url: `https://www.omdbapi.com/?i=${this.props.movie.imdbID}&a{apikey}}` })
       .then((response) => {
         //Second call which updates the UI of React to display data and also select more movie info
         console.log(response)
