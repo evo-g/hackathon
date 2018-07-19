@@ -6,15 +6,15 @@ body {
 }
 
 .ac {
-  background: lightcyan;
+  background: lightslategrey;
 }
 
 .bc {
-  background: #0d9;
+  background: #81D1B4;
 }
 
 .header-bc {
-  background: gainsboro;
+  background: #0d9;
   text-align: center;
   color: red;
 }

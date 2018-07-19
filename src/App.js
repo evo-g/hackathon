@@ -139,7 +139,7 @@ class MovieResults extends Component {
                 <img src={this.props.movie.Poster} alt="description" className='media-object img-rounded' /><br />
               </div>
               <div className='media-body'><br />
-                <div className='text-white'> Year: {this.props.movie.Year}</div>
+                <div className='text'> Year: {this.props.movie.Year}</div>
                 <div className='text-primary'>Actors: {this.state.movie.Actors}</div>
                 <div className='text-danger'>Plot: {this.state.movie.Plot}</div>
                 <div className='text-success'>BoxOffice: {this.state.movie.BoxOffice}</div>
@@ -147,12 +147,12 @@ class MovieResults extends Component {
                 <div className='text-success'>Director: {this.state.movie.Director}</div>
                 <div className='text-danger'>Awards: {this.state.movie.Awards}</div>
                 <div className='text-primary'>Genre: {this.state.movie.Genre}</div>
-                <div className='text-white'>Rated: {this.state.movie.Rated}</div>
+                <div className='text'>Rated: {this.state.movie.Rated}</div>
                 <div>Language: {this.state.movie.Language}</div>
                 <div className='text-info'>Production: {this.state.movie.Production}</div>
                 <div className='text-success'>Metascore: {this.state.movie.Metascore}</div>
                 <div>Writer: {this.state.movie.Writer}</div>
-                <div className='text-white'>Released: {this.state.movie.Released}</div>
+                <div className='text'>Released: {this.state.movie.Released}</div>
                 <button href='#' className='btn btn-danger btn-centered' onClick={this.findMovieIdCall}>Less info</button>
               </div>
             </div>
