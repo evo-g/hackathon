@@ -35,6 +35,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 22rem;
+  border-radius: .2rem;
 }
 
 .ac li {
@@ -190,14 +191,11 @@ p {
     display: flex;
     flex-direction: column;
   }
-  .img-container {
-    max-height: 50%;
-  }
   .img-container img {
     margin-top: 1rem;
-    max-width: 14rem;
   }
   .column {
+    margin-top: 0;
     margin-bottom: 2rem;
     overflow-y: auto;
     max-height: 15rem;
