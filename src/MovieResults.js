@@ -50,7 +50,7 @@ class MovieResults extends Component {
           </button>
         </li>
         :
-        <div className='row'>
+        <div className='row active'>
           <div className='close-btn-container'>
             <button className='close-btn' onClick={this.toggleMovie}>X</button>
           </div>

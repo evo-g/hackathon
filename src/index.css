@@ -79,7 +79,7 @@ body {
   position: fixed;
 }
 
-body.bc-open {
+body.active {
   height: 100vh;
   overflow-y: hidden;
 }
@@ -182,23 +182,17 @@ p {
 }
 
 @media screen and (max-width: 688px) {
-  .body{
-    width: 100%;
-    padding-right: 0;
-  }
   .container {
     display: flex;
     flex-direction: column;
-    width: 100%;
   }
   .bc {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
   }
   .img-container img {
     margin-top: 1rem;
-    max-width: 12rem;
+    max-width: 10rem;
   }
   .column {
     margin-bottom: 2rem;
