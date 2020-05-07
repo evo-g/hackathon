@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Modal from './Modal';
 import axios from 'axios';
 
 class MovieResults extends Component {
@@ -12,15 +11,12 @@ class MovieResults extends Component {
     }
     this.findMovieIdCall = this.findMovieIdCall.bind(this);
     this.toggleMovie = this.toggleMovie.bind(this);
-    // this.showModal = this.showModal.bind(this);
-    // this.onClose = this.onClose.bind(this);
   }
 
   findMovieIdCall() {
     const { movie, isClicked } = this.props;
     axios({ url: `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=7cabe801` })
       .then((response) => {
-        console.log(response.data)
         // Second call which updates the UI of React to display data and also select more movie info
         this.setState({
           movie2: response.data,
@@ -36,19 +32,8 @@ class MovieResults extends Component {
     this.setState({ isClicked: !this.state.isClicked })
   }
 
-  // showModal = e => {
-  //   this.setState({
-  //     show: !this.state.show
-  //   });
-  // };
-
-  // onClose = e => {
-  //   this.props.onClose && this.props.onClose(e);
-  // };
-
   render() {
     const { isClicked, movie2 } = this.state;
-    console.log(movie2)
     return (
       (!isClicked) ?
         <li className='ac'>
