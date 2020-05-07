@@ -190,14 +190,17 @@ p {
     display: flex;
     flex-direction: column;
   }
+  .img-container {
+    max-height: 50%;
+  }
   .img-container img {
     margin-top: 1rem;
-    max-width: 10rem;
+    max-width: 14rem;
   }
   .column {
     margin-bottom: 2rem;
     overflow-y: auto;
-    max-height: 20rem;
+    max-height: 15rem;
   }
   .ac div img {
     padding: 5px;
