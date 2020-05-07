@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import MovieResults from './MovieResults';
 import axios from 'axios';
-// import MovieResults from './MovieResults';
 
 
-export default class Hackathon extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props)
 
@@ -15,164 +15,72 @@ export default class Hackathon extends Component {
     this.handleTextChange = this.handleTextChange.bind(this)
   }
 
-
-  searchMovies() {
+  searchMovies(event) {
     //If statement to alert if search bar is empty also to help from crashing app
-    if (this.state.text === '') {
+    event.preventDefault();
+    const { text } = this.state;
+    if (text === '') {
       alert('Enter a movie in search bar at the top of the page.')
       return false
     }
     axios({
       method: 'get',
-      url: `https://omdbapi.com/?s=${this.state.text}&apiKey=7cabe801`
+      url: `https://omdbapi.com/?s=${text}&apiKey=7cabe801`
     })
       .then((response) => {
         //Update the UI of React to display data and determine if search not found with alert
         if (response.data.Search) {
-          this.setState({ movies: response.data.Search })
-          console.log(response)
+          this.setState({ 
+            movies: response.data.Search,
+            text: ''
+          })
         } else {
           alert('no movies found please search again')
         }
       })
       .catch((error) => {
         //Update the ui to display the error
+        throw error
       })
   }
 
 
   handleTextChange(event) {
-    console.log(event.target.value)
     this.setState({ text: event.target.value })
   }
 
 
   render() {
+    const { text, movies } = this.state;
     return (
-      <div className='container-fluid'>
+      <div className='container'>
         <div className='jumbotron'>
-          <h1 className='header text-center'> Basic Movie Search </h1>
-          <p className='text-center'> Search your favorite movies</p>
+          <h1 className='text-center'> Movie Finder </h1>
+          <h3 className='text-center'> Search your favorite movies</h3>
         </div>
-
-        <div className='row'>
-
-        <div className='col-lg-12'>
-          <input className="w-75 search" value={this.state.text} onChange={this.handleTextChange} placeholder='search movies here...' />
-          <button className='btn btn-success btn-center w-25 search-movies glyphicon glyphicon-search' onClick={this.searchMovies}></button>
-          <h2 className='text-center card-header w-100'> Movie Results: </h2>
-
-            <ul>
-              {this.state.movies.map((movie, index, array) => {
-                return (
-                  <MovieResults
-                    key={index}
-                    movie={movie}
-                  />)
-              })}
-            </ul>
-          </div>
-          </div>
-          </div>
-
-
-
-
+        <div>
+          <form className='form-row'>
+            <input className='' value={text} onChange={this.handleTextChange} placeholder='search movies here...' />
+            <button className='btn search-movies' type='submit' onClick={this.searchMovies}>Search</button>
+          </form>
+          {
+            movies.length === 0 ?
+              <></>
+              :
+              <div>
+                <ul className='format'>
+                  {this.state.movies.map((movie, index) => {
+                    return (
+                      <MovieResults
+                        key={index}
+                        movie={movie}
+                      />)
+                  })}
+                </ul>
+              </div>
+          }
+        </div>
+      </div>
     );
   }
-}
-
-class MovieResults extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movie: {},
-      isClicked: false
-    }
-    this.findMovieIdCall = this.findMovieIdCall.bind(this);
-    // this.zoomOnClick = this.zoomOnClick.bind(this); 
-  }
-
-  //   zoomOnClick() {
-  //     this.setState({ isClicked: !this.state.isClicked });
-  // }
-
-  findMovieIdCall() {
-    axios({ url: `https://www.omdbapi.com/?i=${this.props.movie.imdbID}&apikey=7cabe801` })
-      .then((response) => {
-        //Second call which updates the UI of React to display data and also select more movie info
-        console.log(response)
-        this.setState({ movie: response.data, isClicked: !this.state.isClicked })
-      })
-      .catch((error) => {
-        //Update the ui to display the error
-      })
-  }
-
-
-
-  render() {
-    return (
-      (!this.state.isClicked) ?
-        <div className='well'>
-
-          <div className='card ac'>
-            <div className='media'>
-              <li>
-                <div className='media-left'>
-                  <img src={this.props.movie.Poster} alt="description" className='media-object img-rounded' />
-                </div>
-                <div className='media-body'>
-                  <div className='text-info'> Movie Title: {this.props.movie.Title} </div>
-                  <button href='#' className='btn btn-info btn-centered text-center' onClick={this.findMovieIdCall}>Click for more info</button>
-                </div>
-              </li>
-            </div>
-          </div>
-        </div>
-        :
-        // (this.state.isClicked) ?
-          <div className='card bc'>
-            <h2 className="header-bc text-center text-bold"> {this.props.movie.Title} </h2>
-            <div className='media'>
-              <div className='media-left'><br />
-                <img src={this.props.movie.Poster} alt="description" className='media-object img-rounded' /><br />
-              </div>
-              <div className='media-body'><br />
-                <div className='text'> Year: {this.props.movie.Year}</div>
-                <div className='text-primary'>Actors: {this.state.movie.Actors}</div>
-                <div className='text-danger'>Plot: {this.state.movie.Plot}</div>
-                <div className='text-success'>BoxOffice: {this.state.movie.BoxOffice}</div>
-                <div className='text-active'>Runtime: {this.state.movie.Runtime}</div>
-                <div className='text-success'>Director: {this.state.movie.Director}</div>
-                <div className='text-danger'>Awards: {this.state.movie.Awards}</div>
-                <div className='text-primary'>Genre: {this.state.movie.Genre}</div>
-                <div className='text'>Rated: {this.state.movie.Rated}</div>
-                <div>Language: {this.state.movie.Language}</div>
-                <div className='text-info'>Production: {this.state.movie.Production}</div>
-                <div className='text-success'>Metascore: {this.state.movie.Metascore}</div>
-                <div>Writer: {this.state.movie.Writer}</div>
-                <div className='text'>Released: {this.state.movie.Released}</div>
-                <button href='#' className='btn btn-danger btn-centered' onClick={this.findMovieIdCall}>Less info</button>
-              </div>
-            </div>
-          </div>
-          // :
-          // <div className='col-sm-12'>
-          //   <div className='card'>
-          //     <div className='media'>
-          //       <li>
-          //         <div className='media-left'>
-          //           <img src={this.props.movie.Poster} alt="description" className='media-object img-rounded' />
-          //         </div>
-          //         <div className='media-body'>
-          //           <div className='text-info'> Movie Title: {this.props.movie.Title} </div>
-          //           <button href='#' className='btn btn-info btn-centered' onClick={this.findMovieIdCall}>Click for more info</button>
-          //         </div>
-          //       </li>
-          //     </div>
-          //   </div>
-          // </div>
-    )
-  }
-}
+};
