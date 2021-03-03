@@ -126,7 +126,6 @@ body.active {
 }
 
 .img-container {
-  width: 35%;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -141,8 +140,7 @@ body.active {
   width: 35rem;
   display: flex;
   flex-direction: column;
-  margin: 1rem 3rem 2rem .7rem;
-  padding: 1rem 5rem 1rem 1rem;
+  padding: 1rem;
   overflow-y: auto;
 }
 
@@ -235,14 +233,21 @@ p {
     align-items: center;
 
   }
+
+  .img-container {
+    height: 300px;
+    width: 100%;
+  }
+
   .img-container img {
-    margin-top: 2rem;
+    margin: 2rem 0 0;
     width: 12rem;
+    z-index: 10;
   }
   .column {
-    margin: 0 0 2rem;
+    margin: 0 0 5rem;
     overflow-y: auto;
-    max-height: 18rem;
+    max-height: 21rem;
     width: 100%;
     padding: 1rem;
   }
