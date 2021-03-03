@@ -235,7 +235,7 @@ p {
   }
 
   .img-container {
-    height: 300px;
+    height: 15rem;
     width: 100%;
   }
 
@@ -243,11 +243,12 @@ p {
     margin: 2rem 0 0;
     width: 12rem;
     z-index: 10;
+    object-fit: contain;
   }
   .column {
     margin: 0 0 5rem;
     overflow-y: auto;
-    max-height: 21rem;
+    max-height: 25rem;
     width: 100%;
     padding: 1rem;
   }
