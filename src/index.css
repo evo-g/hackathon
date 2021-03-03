@@ -1,14 +1,17 @@
-
 body {
-  background: lightslategrey;
   -webkit-font-smoothing: antialiased;
+  background: lightslategrey;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 90%;
   height: 100vh;
 }
 
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
 .jumbotron {
-  background: #0d9;
+  background: #ffa140;
   color: #111111;
   box-shadow: 0 0 1px;
   text-align: center;
@@ -42,25 +45,21 @@ body {
   list-style-image: none;
 }
 
-.ac div img {
-  padding: 5px;
-  border-radius: .5rem;
-  width: 100%;
-}
-
 .ac button {
-  padding: 5px;
-  margin: .5rem;
+  padding: 6px 16px;
+  margin:  .5rem .5rem 1rem;
   border-radius: .5rem;
-  background: #0d9
+  background: #5dbcd2;
 }
 
 .text-center {
   text-align: center;
 }
+
 .text-center span {
-  color: #5dbcd2;
+  color: #535353;
 }
+
 .btn {
   border-radius: .5rem;
   border: none;
@@ -69,6 +68,12 @@ body {
 
 .bth:visited {
   text-decoration: none;
+}
+
+.btn:hover {
+  opacity: 0.5;
+  transition: 0.1s ease all;
+  color: #fafafa;
 }
 
 .row {
@@ -81,8 +86,18 @@ body {
 }
 
 body.active {
-  height: 100vh;
-  overflow-y: hidden;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  display: flex;
+  flex-direction: column;
 }
 
 .bc {
@@ -90,7 +105,8 @@ body.active {
   display: flex;
   flex-direction: row;
   align-content: center;
-  z-index: 1;
+  justify-content: center;
+  z-index: 10;
 }
 
 .header-bc {
@@ -98,7 +114,19 @@ body.active {
   color: rgba(39,44,53);
 }
 
+.poster-conatiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.poster-container img {
+  margin: 1rem;
+  border-radius: .2rem;
+}
+
 .img-container {
+  width: 35%;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -110,14 +138,17 @@ body.active {
 }
 
 .column {
+  width: 35rem;
   display: flex;
   flex-direction: column;
-  margin-left: .7rem;
-  overflow: auto;
+  margin: 1rem 3rem 2rem .7rem;
+  padding: 1rem 5rem 1rem 1rem;
+  overflow-y: auto;
 }
 
-.column h2 {
+.column h1 {
   color: crimson;
+  text-align: center;
 }
 
 .column button {
@@ -128,6 +159,9 @@ body.active {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
 .close-btn {
@@ -146,8 +180,14 @@ body.active {
   margin: .5rem;
   border: none;
   border-radius: .5rem;
-  background: #0d9;
+  background: #5dbcd2;
   cursor: pointer;
+}
+
+.btn-back:hover {
+  opacity: 0.5;
+  transition: 0.1s ease all;
+  color: #fafafa;
 }
 
 ul {
@@ -155,7 +195,7 @@ ul {
 }
 
 .form-row {
-  display: flex;
+  display: inline-flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
@@ -165,13 +205,15 @@ ul {
 
 .form-row input {
   width: 55%;
+  padding: 5px;
 }
 
 .form-row button {
+  text-align: center;
   width: 35%;
+  padding: 5px 15px;
   background-color: #5dbcd2;
   color: #fafafa;
-  height: 1.5rem;
 }
 
 p {
@@ -190,15 +232,19 @@ p {
   .bc {
     display: flex;
     flex-direction: column;
+    align-items: center;
+
   }
   .img-container img {
-    margin-top: 1rem;
+    margin-top: 2rem;
+    width: 12rem;
   }
   .column {
-    margin-top: 0;
-    margin-bottom: 2rem;
+    margin: 0 0 2rem;
     overflow-y: auto;
-    max-height: 15rem;
+    max-height: 18rem;
+    width: 100%;
+    padding: 1rem;
   }
   .ac div img {
     padding: 5px;

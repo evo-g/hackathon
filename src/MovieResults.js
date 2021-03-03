@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './index.css';
 
 class MovieResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie2: {},
+      movieDetails: {},
       isClicked: false,
       show: false
     }
@@ -19,12 +20,13 @@ class MovieResults extends Component {
       .then((response) => {
         // Second call which updates the UI of React to display data and also select more movie info
         this.setState({
-          movie2: response.data,
+          movieDetails: response.data,
           isClicked: !isClicked
         })
       })
       .catch((error) => {
         //Update the ui to display the error
+        console.log(error);
       })
   }
 
@@ -33,16 +35,17 @@ class MovieResults extends Component {
   }
 
   render() {
-    const { isClicked, movie2 } = this.state;
+    const { isClicked, movieDetails } = this.state;
     return (
       (!isClicked) ?
         <li className='ac'>
-          <div>
-            <img src={this.props.movie.Poster} alt="description" className='img-rounded' />
+          <div className='poster-container'>
+            <img src={this.props.movie.Poster} alt='description' />
           </div>
-          <div className='text-center'> Movie Title: <span>{this.props.movie.Title}</span> </div>
+          <div className='text-center'>
+            <h1><span>{this.props.movie.Title}</span></h1>
+          </div>
           <button
-            href='#'
             className='btn text-center'
             onClick={this.findMovieIdCall}
           >
@@ -56,26 +59,26 @@ class MovieResults extends Component {
           </div>
           <div className='bc'>
             <div className='img-container'>
-              <img src={movie2.Poster} alt="description" className=' img-rounded' />
+              <img src={movieDetails.Poster} alt='description' className='img-rounded' />
             </div>
             <div className='column'>
-              <h2> {movie2.Title} </h2>
-              <p> Year: {movie2.Year}</p>
-              <p>Actors: {movie2.Actors}</p>
-              <p>Plot: {movie2.Plot}</p>
-              <p>BoxOffice: {movie2.BoxOffice}</p>
-              <p>Runtime: {movie2.Runtime}</p>
-              <p>Director: {movie2.Director}</p>
-              <p >Awards: {movie2.Awards}</p>
-              <p>Genre: {movie2.Genre}</p>
-              <p>Rated: {movie2.Rated}</p>
-              <p >Ratings: {movie2.Ratings[0].Source}</p>
-              <p>Ratings: {!movie2.Ratings[0].Value}</p>
-              <p>Language: {movie2.Language}</p>
-              <p>Production: {movie2.Production}</p>
-              <p>Metascore: {movie2.Metascore}</p>
-              <p>Writer: {movie2.Writer}</p>
-              <p>Released: {movie2.Released}</p>
+              <h1> {movieDetails.Title} </h1>
+              <p> Year: {movieDetails.Year}</p>
+              <p>Actors: {movieDetails.Actors}</p>
+              <p>Plot: {movieDetails.Plot}</p>
+              <p>BoxOffice: {movieDetails.BoxOffice}</p>
+              <p>Runtime: {movieDetails.Runtime}</p>
+              <p>Director: {movieDetails.Director}</p>
+              <p >Awards: {movieDetails.Awards}</p>
+              <p>Genre: {movieDetails.Genre}</p>
+              <p>Rated: {movieDetails.Rated}</p>
+              <p >Ratings: {movieDetails.Ratings[0].Source}</p>
+              <p>Ratings: {!movieDetails.Ratings[0].Value}</p>
+              <p>Language: {movieDetails.Language}</p>
+              <p>Production: {movieDetails.Production}</p>
+              <p>Metascore: {movieDetails.Metascore}</p>
+              <p>Writer: {movieDetails.Writer}</p>
+              <p>Released: {movieDetails.Released}</p>
               <button className='btn-back' onClick={this.toggleMovie}>Back</button>
             </div>
           </div >
